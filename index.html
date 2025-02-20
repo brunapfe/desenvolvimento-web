@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <title>Registro de Atividades</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h2>Registro de Atividades</h2>
+    <label>Descrição:</label>
+    <input type="text" id="descricao"><br>
+    
+    <label>Categoria:</label>
+    <select id="categoria" onchange="atualizarTipos()">
+        <option value="Ensino">Ensino</option>
+        <option value="Extensao">Extensão</option>
+        <option value="Pesquisa">Pesquisa</option>
+    </select><br>
+
+    <label>Tipo:</label>
+    <select id="tipo"></select><br>
+
+    <label>Total de horas:</label>
+    <input type="number" id="horas" step="0.1"><br>
+    
+    <button onclick="adicionarAtividade()">Adicionar</button>
+    <button onclick="limparRegistros()">Limpar Registros</button>
+    
+    <h3>Atividades Registradas</h3>
+    <ul id="listaAtividades"></ul>
+    
+    <h3>Horas por Categoria</h3>
+    <p>Ensino: <span id="horasEnsino">0</span>/90h</p>
+    <p>Extensão: <span id="horasExtensao">0</span>/90h</p>
+    <p>Pesquisa: <span id="horasPesquisa">0</span>/90h</p>
+
+    <h3>Total Geral de Horas: <span id="totalGeral">0</span>/150h</h3>
+</body>
+</html>
