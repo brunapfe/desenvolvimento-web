@@ -188,6 +188,20 @@ function limparRegistros() {
     alert("Todos os registros foram limpos.");
 }
 
+function limparFirestore() {
+    if (confirm("Tem certeza que deseja limpar todas as atividades do Firestore?")) {
+        db.collection("atividades").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                doc.ref.delete(); // Exclui cada documento
+            });
+            alert("Todas as atividades foram excluídas do Firestore.");
+            carregarAtividades(); // Recarrega a lista de atividades (agora vazia)
+        }).catch((error) => {
+            console.error("Erro ao excluir atividades: ", error);
+        });
+    }
+}
+
 function carregarAtividades() {
     db.collection("atividades").orderBy("timestamp", "desc").get()
         .then((querySnapshot) => {
